@@ -30,8 +30,23 @@ class VideoModel {
             if error != nil || data == nil {
                 return
             }
+            
+            do {
             //parsing the data to video objects
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
+                 
+                let response = try decoder.decode(Response.self, from: data!)
+                
+                dump(response)
+            }
+            catch {
+                
+            }
+
+            
         }
+        
         //kick off the datatask and I nthink this is datatask.resume()
         datatask.resume()
     }
